@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Hello Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <h2 text-center>{{user?.firstName}} {{user?.lastName}}</h2>
+
+  <ion-card>
+
+    <ion-item>
+      <ion-icon name="happy" item-left></ion-icon>
+      Total Kudos
+      <ion-badge item-right>{{user?.totalKudos}}</ion-badge>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="nutrition" item-left></ion-icon>
+      Weekly Kudos
+      <ion-badge item-right>{{user?.weeklyKudos}}</ion-badge>
+    </ion-item>
+
+  </ion-card>
+
+  <p>
+    This starter project comes with simple tabs-based layout for apps
+    that are going to primarily use a Tabbed UI.
+  </p>
+  <p>
+    Take a look at the <code>src/pages/</code> directory to add or change tabs,
+    update any existing page or create new pages.
+  </p>
+
+</ion-content>
+
