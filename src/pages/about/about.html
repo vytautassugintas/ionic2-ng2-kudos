@@ -8,4 +8,12 @@
 
 <ion-content padding>
 
+  <ion-card *ngFor="let item of kudosHistoryList">
+    <ion-card-content>
+      <p>{{item.senderFullName}}</p>
+      <ion-badge>{{item.amount}}</ion-badge><span> kudos </span>
+      <p>{{item.receiverFullName}}</p>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

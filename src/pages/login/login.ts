@@ -1,8 +1,10 @@
 import {Component, ViewChild} from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {LoginForm} from "../../app/forms/loginForm";
+import {LoginForm} from "../../app/forms/login.form";
 import {AuthenticationService} from "../../app/services/authentication.service";
 import {HomePage} from "../home/home";
+import {TabsPage} from "../tabs/tabs";
+import {SignupPage} from "../signup/signup";
 
 @Component({
   selector: 'page-login',
@@ -27,12 +29,16 @@ export class LoginPage {
       response => {
         console.log(response);
         console.log("Calling");
-        this.navCtrl.push(HomePage);
+        this.navCtrl.push(TabsPage);
       },
       error => {
         console.log("Error");
       }
     );
+  }
+
+  redirectToSignUp(){
+    this.navCtrl.push(SignupPage);
   }
 
 }

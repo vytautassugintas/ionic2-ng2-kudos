@@ -8,6 +8,8 @@ import {TabsPage} from '../pages/tabs/tabs';
 import {LoginPage} from '../pages/login/login';
 import {AuthenticationService} from "./services/authentication.service";
 import {HomeService} from "./services/home.service";
+import {KudosService} from "./services/kudos.service";
+import {SignupPage} from "../pages/signup/signup";
 
 @NgModule({
   declarations: [
@@ -16,6 +18,7 @@ import {HomeService} from "./services/home.service";
     ContactPage,
     HomePage,
     LoginPage,
+    SignupPage,
     TabsPage
   ],
   imports: [
@@ -28,11 +31,13 @@ import {HomeService} from "./services/home.service";
     ContactPage,
     HomePage,
     LoginPage,
+    SignupPage,
     TabsPage
   ],
   providers: [
     AuthenticationService,
-    HomeService
+    HomeService,
+    KudosService
   ]
 })
 export class AppModule {
