@@ -3,17 +3,21 @@
   <ion-title text-center>Sign In</ion-title>
 
   <form (ngSubmit)="submitLogin()">
+
     <ion-item>
       <ion-label stacked>Email</ion-label>
       <ion-input type="text" [(ngModel)]="loginForm.userEmail" name="user"></ion-input>
     </ion-item>
+
     <ion-item>
       <ion-label stacked>Password</ion-label>
       <ion-input type="password" [(ngModel)]="loginForm.password" name="password"></ion-input>
     </ion-item>
+
     <div padding>
       <button ion-button type="submit" block>Login</button>
     </div>
+
   </form>
 
   <ion-item text-center no-lines>
