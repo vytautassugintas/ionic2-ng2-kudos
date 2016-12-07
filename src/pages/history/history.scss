@@ -1,0 +1,24 @@
+page-about {
+
+  a{
+    text-decoration: none;
+  }
+
+  ion-card {
+    background: #ffffff;
+  }
+
+  .date{
+    font-style: italic;
+    font-size: 12px;
+    color: #7f7f7f;
+  }
+
+  .transaction-item {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #aeaeae;
+  }
+
+}

@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <ion-title text-center>{{userProfile.firstName}} Profile</ion-title>
+    </ion-title>
+    <ion-buttons left>
+      <button ion-button (click)="dismiss()">
+        <span color="primary" showWhen="ios">Close</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div *ngIf="userProfile">
+
+    <div text-center>
+      <kudos-user-icon fullName="{{getUserFullName()}}" size="2"></kudos-user-icon>
+      <div>{{userProfile.firstName}} {{userProfile.lastName}}</div>
+      <span>Total Kudos <ion-badge>{{userProfile.totalKudos}}</ion-badge></span>
+      <div class="level">
+        <div class="title">{{userProfile.level}}</div>
+        <div class="subtitle">Level</div>
+      </div>
+    </div>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col width-33>
+          <kudos-user-icon fullName="{{getUserFullName()}}" size="2"></kudos-user-icon>
+        </ion-col>
+        <ion-col width-67>
+          <span>{{userProfile.firstName}} {{userProfile.lastName}}</span>
+          <div>
+            <span>Total Kudos <ion-badge>{{userProfile.totalKudos}}</ion-badge></span>
+            <div class="level">
+              <div class="title">{{userProfile.level}}</div>
+              <div class="subtitle">Level</div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+  </div>
+</ion-content>

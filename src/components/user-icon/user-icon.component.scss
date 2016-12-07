@@ -1,0 +1,26 @@
+$regular-icon-size: 64px;
+$small-icon-size: 24px;
+$icon-font-size: 20px;
+$icon-border-radius: 2px;
+$icon-text-color: #fff;
+
+.circle {
+  /*margin: auto;*/
+  border-radius: $icon-border-radius;
+  font-size: $icon-font-size;
+  color: #fff;
+  text-align: center;
+}
+
+.regular {
+  width: $regular-icon-size;
+  height: $regular-icon-size;
+  line-height: $regular-icon-size;
+}
+
+.small {
+  width: $small-icon-size;
+  height: $small-icon-size;
+  line-height: $small-icon-size;
+  font-size: 12px;
+}

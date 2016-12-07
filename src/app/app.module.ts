@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {IonicApp, IonicModule} from 'ionic-angular';
 import {MyApp} from './app.component';
-import {AboutPage} from '../pages/about/about';
 import {ContactPage} from '../pages/contact/contact';
 import {HomePage} from '../pages/home/home';
 import {TabsPage} from '../pages/tabs/tabs';
@@ -10,16 +9,25 @@ import {AuthenticationService} from "./services/authentication.service";
 import {HomeService} from "./services/home.service";
 import {KudosService} from "./services/kudos.service";
 import {SignupPage} from "../pages/signup/signup";
+import {KudosModalPage} from "../pages/_modals/kudos-modal/kudos-modal";
+import {HistoryPage} from "../pages/history/history";
+import {ShopPage} from "../pages/shop/shop";
+import {UserModalPage} from "../pages/_modals/user-modal/user-modal";
+import {UserIconComponent} from "../components/user-icon/user-icon.component";
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
+    HistoryPage,
     ContactPage,
     HomePage,
+    KudosModalPage,
+    UserModalPage,
+    ShopPage,
     LoginPage,
     SignupPage,
-    TabsPage
+    TabsPage,
+    UserIconComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -27,12 +35,16 @@ import {SignupPage} from "../pages/signup/signup";
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
+    HistoryPage,
     ContactPage,
     HomePage,
+    KudosModalPage,
+    UserModalPage,
+    ShopPage,
     LoginPage,
     SignupPage,
-    TabsPage
+    TabsPage,
+    UserIconComponent
   ],
   providers: [
     AuthenticationService,

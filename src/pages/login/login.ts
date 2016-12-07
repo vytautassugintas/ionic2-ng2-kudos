@@ -20,6 +20,13 @@ export class LoginPage {
 
   ionViewDidLoad() {
     console.log('Hello LoginPage Page');
+    this.authService.isLogged().subscribe(
+      isLogged => {
+        if (isLogged){
+          this.navCtrl.push(TabsPage);
+        }
+      }
+    )
   }
 
   submitLogin(){

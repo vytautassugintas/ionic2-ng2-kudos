@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Description
+    </ion-title>
+    <ion-buttons left>
+      <button ion-button (click)="dismiss()">
+        <span color="primary" showWhen="ios">Close</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <div class="kudos-form">
+
+    <div class="form-title">
+      <h4>Give Kudos</h4>
+    </div>
+
+    <form (ngSubmit)="sendKudos()">
+      <div class="input-holder">
+        <input type="text"
+               placeholder="Receiver Email"
+               autocomplete="off"
+               (focus)="onEmailFocus()"
+               (blur)="onEmailBlur()"
+               (ngModelChange)="onEmailInputChange($event)"
+               [ngClass]="showPredicates && emailInputFocused ? 'no-border-radius-bottom' : ''"
+               [(ngModel)]="kudosForm.receiverEmail" name="receiverEmail">
+        <div class="error"
+             *ngIf="error?.field == 'receiver_email'">
+          {{error.message}}
+        </div>
+        <div class="email-predicates-holder-wrapper"
+             *ngIf="showPredicates && emailInputFocused">
+          <div class="email-predicates-holder"
+               *ngFor="let predicate of predicatedEmails">
+            <div class="predicated-item"
+                 (click)="selectPredicate(predicate.email)">
+              <div class="predicated-user-name">
+                {{predicate.firstName}} {{predicate.lastName}}
+              </div>
+              <div class="predicated-user-email">
+                {{predicate.email}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-holder">
+        <input type="number"
+               placeholder="Kudos Amount"
+               name="amount"
+               [(ngModel)]="kudosForm.amount">
+        <div class="error"
+             *ngIf="error?.field == 'amount'">
+          {{error.message}}
+        </div>
+
+      </div>
+
+      <div class="input-holder">
+        <input type="text"
+               placeholder="Message"
+               maxlength="140"
+               [ngClass]="showMessageCharactersCounter ? '' : 'margin-bottom'"
+               (focus)="showMessageCharactersCounter = true"
+               (blur)="showMessageCharactersCounter = false"
+               [(ngModel)]="kudosForm.message" name="message">
+        <span *ngIf="showMessageCharactersCounter">
+          {{kudosForm.message.length}} / 140
+        </span>
+      </div>
+
+      <button ion-button icon-left clear small
+              type="button"
+              (click)="presentActionSheet()">
+        <ion-icon name="add"></ion-icon>
+        Add Endorsement
+      </button>
+
+      <div class="endorsement">
+        <ion-badge *ngIf="selectedEndorsement">
+          {{selectedEndorsement}}
+        </ion-badge>
+      </div>
+
+
+      <div padding>
+        <button ion-button full
+                type="submit">Give
+        </button>
+      </div>
+    </form>
+  </div>
+
+</ion-content>

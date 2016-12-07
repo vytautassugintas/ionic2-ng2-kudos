@@ -1,19 +1,20 @@
 import {Component} from '@angular/core';
 
-import {NavController} from 'ionic-angular';
+import {NavController, ModalController} from 'ionic-angular';
 import {KudosService} from "../../app/services/kudos.service";
 import {KudosResponse} from "../../app/model/response/kudos.model";
+import {UserModalPage} from "../_modals/user-modal/user-modal";
 
 @Component({
   selector: 'page-about',
-  templateUrl: 'about.html',
+  templateUrl: 'history.html',
   providers: [KudosService]
 })
-export class AboutPage {
+export class HistoryPage {
 
   kudosHistoryList: Array<KudosResponse>;
 
-  constructor(public navCtrl: NavController, private kudosService: KudosService) {
+  constructor(public navCtrl: NavController, private kudosService: KudosService, public modalCtrl: ModalController) {
     this.getKudosHistory(0, 10);
   }
 
@@ -23,6 +24,8 @@ export class AboutPage {
     );
   }
 
-
+  openUserModal(id) {
+    this.modalCtrl.create(UserModalPage, {userId: id}).present();
+  }
 
 }

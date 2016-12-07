@@ -24,7 +24,7 @@ export class KudosService {
         let body = JSON.stringify({receiverEmail, amount, message});
         return this.http.post(this.giveUrl, body, RequestHelper.getBasicRequestOptions())
             .map(ResponseExtractor.extractJson)
-            .catch(ResponseExtractor.handleSimpleError);
+            .catch(ResponseExtractor.handleError);
     }
 
     public getHistory(page: number, pageSize: number): Observable<any> {

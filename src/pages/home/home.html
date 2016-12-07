@@ -1,42 +1,52 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Hello Home</ion-title>
+    <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-  <h2 text-center>{{user?.firstName}} {{user?.lastName}}</h2>
+    <h5 text-center>Hello {{user?.firstName}}</h5>
 
-  <ion-card>
+    <ion-grid *ngIf="user">
+      <ion-row>
+        <ion-col width-20>
+          <div class="level" text-center>
+            <div class="title">{{user.level}}</div>
+            <div class="subtitle">Level</div>
+          </div>
+        </ion-col>
+        <ion-col width-80>
+          <div class="progress-bar blue stripes">
+          <span [style.width]="experiencePointsPercentage + '%'">
+          </span>
+          </div>
+          <div class="experience-counter" text-center>
+            {{user.experiencePoints}} / {{user.experiencePointsToLevelUp}} xp
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-    <ion-item>
-      <ion-icon name="happy" item-left></ion-icon>
-      Total Kudos
-      <ion-badge item-right>{{user?.totalKudos}}</ion-badge>
-    </ion-item>
+    <ion-grid text-center>
+      <ion-row>
+        <ion-col width-50>
+          <span>Total Kudos</span>
+          <ion-badge item-right>{{user?.totalKudos}}</ion-badge>
+        </ion-col>
+        <ion-col width-50>
+          <span>Weekly Kudos</span>
+          <ion-badge item-right>{{user?.weeklyKudos}}</ion-badge>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-    <ion-item>
-      <ion-icon name="nutrition" item-left></ion-icon>
-      Weekly Kudos
-      <ion-badge item-right>{{user?.weeklyKudos}}</ion-badge>
-    </ion-item>
-
-  </ion-card>
-
-  <div padding>
-    <button ion-button type="button">Give</button>
-    <button ion-button type="button">Challenge</button>
-  </div>
-
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+    <div text-center padding>
+      <button ion-button round outline
+              (click)="openKudosModal()"
+              type="button">Give Kudos
+      </button>
+    </div>
 
 </ion-content>
 
