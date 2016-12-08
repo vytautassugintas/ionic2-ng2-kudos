@@ -14,25 +14,67 @@
 
 <ion-content padding>
 
-  <div *ngIf="userProfile">
+  <div *ngIf="userProfile" text-center>
 
-    <div text-center>
+    <div>
       <kudos-user-icon fullName="{{getUserFullName()}}" size="2"></kudos-user-icon>
-      <div>{{userProfile.firstName}} {{userProfile.lastName}}</div>
-      <span>Total Kudos <ion-badge>{{userProfile.totalKudos}}</ion-badge></span>
-      <div class="level">
-        <div class="title">{{userProfile.level}}</div>
-        <div class="subtitle">Level</div>
-      </div>
+      <h4>{{userProfile.firstName}} {{userProfile.lastName}}</h4>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col width-33>
+            <span>Total Kudos</span>
+            <div class="badge-padding">
+              <ion-badge>{{userProfile.totalKudos}}</ion-badge>
+            </div>
+          </ion-col>
+          <ion-col width-33>
+            <div class="level">
+              <div class="title">{{userProfile.level}}</div>
+              <div class="subtitle">Level</div>
+            </div>
+          </ion-col>
+          <ion-col width-33>
+            <span>Weekly Kudos</span>
+            <div class="badge-padding">
+              <ion-badge>{{userProfile.weeklyKudos}}</ion-badge>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
     </div>
 
-    <ion-grid>
+    <div>
+      <ion-card *ngFor="let item of kudosHistoryList">
+        <ion-card-content>
+          <a href="javascript:"
+             (click)="openUserModal(item.senderId)">{{item.senderFullName}}</a> sent
+          <ion-badge>{{item.amount}}</ion-badge>
+          <span> kudos </span> to
+          <a href="javascript:"
+             (click)="openUserModal(item.receiverId)">{{item.receiverFullName}}</a>
+          <span class="kudos-date">{{item.date | date}}</span>
+          <div class="message">
+            <ion-icon name="mail"></ion-icon>
+            {{item.message}}
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content>
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </div>
+
+<!--    <ion-grid>
       <ion-row>
         <ion-col width-33>
           <kudos-user-icon fullName="{{getUserFullName()}}" size="2"></kudos-user-icon>
         </ion-col>
         <ion-col width-67>
-          <span>{{userProfile.firstName}} {{userProfile.lastName}}</span>
+          <h4>{{userProfile.firstName}} {{userProfile.lastName}}</h4>
           <div>
             <span>Total Kudos <ion-badge>{{userProfile.totalKudos}}</ion-badge></span>
             <div class="level">
@@ -42,7 +84,7 @@
           </div>
         </ion-col>
       </ion-row>
-    </ion-grid>
+    </ion-grid>-->
 
 
   </div>

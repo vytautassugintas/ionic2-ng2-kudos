@@ -14,6 +14,7 @@ import {HistoryPage} from "../pages/history/history";
 import {ShopPage} from "../pages/shop/shop";
 import {UserModalPage} from "../pages/_modals/user-modal/user-modal";
 import {UserIconComponent} from "../components/user-icon/user-icon.component";
+import {ActionItemComponent} from "../components/action-item/action-item.component";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {UserIconComponent} from "../components/user-icon/user-icon.component";
     LoginPage,
     SignupPage,
     TabsPage,
-    UserIconComponent
+    UserIconComponent,
+    ActionItemComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -44,7 +46,8 @@ import {UserIconComponent} from "../components/user-icon/user-icon.component";
     LoginPage,
     SignupPage,
     TabsPage,
-    UserIconComponent
+    UserIconComponent,
+    ActionItemComponent
   ],
   providers: [
     AuthenticationService,

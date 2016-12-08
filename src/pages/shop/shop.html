@@ -7,6 +7,39 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
+  <ion-card *ngFor="let item of shopItems">
+    <img src="{{item.imageUrl}}" style="max-height: 240px"/>
+    <ion-card-content>
+      <ion-card-title>
+        {{item.title}}
+      </ion-card-title>
+      <p>
+        {{item.description}}
+      </p>
+
+      <ion-row>
+        <ion-col text-left no-padding>
+          <button ion-button clear small icon-left no-padding>
+            <ion-icon name='basket'></ion-icon>
+            Buy
+          </button>
+        </ion-col>
+
+        <ion-col text-right no-padding>
+          <button ion-button clear small icon-left no-padding>
+            <ion-icon name='more'></ion-icon>
+            More
+          </button>
+        </ion-col>
+
+
+
+
+      </ion-row>
+
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+

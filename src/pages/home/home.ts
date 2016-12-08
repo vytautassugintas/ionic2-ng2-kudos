@@ -14,10 +14,10 @@ import {KudosModalPage} from "../_modals/kudos-modal/kudos-modal";
 export class HomePage {
 
   user: any = {};
-
+  actionsList: any = [];
   experiencePointsPercentage = 0;
-
-  showMessageCharactersCounter = false;
+  page: number = 0;
+  lastPage: boolean = false;
 
   constructor(public navCtrl: NavController, private homeService: HomeService, private authService: AuthenticationService, public modalCtrl: ModalController) {
 
@@ -25,6 +25,7 @@ export class HomePage {
 
   ionViewDidLoad() {
     this.getUserInformation();
+    this.getGlobalActions(this.page, 10);
   }
 
   getUserInformation() {
@@ -34,6 +35,41 @@ export class HomePage {
         this.calculateExperiencePointsPercentage(user.experiencePoints, user.experiencePointsToLevelUp, user.previousLevelExperiencePoints);
       }
     )
+  }
+
+  getGlobalActions(page, pageSize) {
+    this.homeService.globalActions(page, pageSize).subscribe(
+      result => {
+        this.page++;
+        for (var item of result.content) {
+          this.actionsList.push(item);
+        }
+        if (result.last) {
+          this.lastPage = true;
+        }
+      }
+    )
+  }
+
+  doInfinite(infiniteScroll) {
+    if (this.lastPage) {
+      infiniteScroll.enable(false);
+    } else {
+      this.homeService.globalActions(this.page, 10).subscribe(
+        result => {
+          this.page++;
+          for (var item of result.content) {
+            this.actionsList.push(item);
+          }
+          infiniteScroll.complete();
+
+          if (result.last) {
+            this.lastPage = true;
+            infiniteScroll.enable(false);
+          }
+
+        })
+    }
   }
 
   calculateExperiencePointsPercentage(number, amount, previous) {
@@ -59,7 +95,7 @@ export class HomePage {
   openKudosModal() {
     let modal = this.modalCtrl.create(KudosModalPage, {user: this.user});
     modal.onDidDismiss(data => {
-      if (data){
+      if (data) {
         this.increaseUserExperiencePoints(data * 2);
         this.user.weeklyKudos -= data;
       }

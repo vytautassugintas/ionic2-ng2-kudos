@@ -4,49 +4,64 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
-    <h5 text-center>Hello {{user?.firstName}}</h5>
+  <h5 text-center>Hello {{user?.firstName}}</h5>
 
-    <ion-grid *ngIf="user">
-      <ion-row>
-        <ion-col width-20>
-          <div class="level" text-center>
-            <div class="title">{{user.level}}</div>
-            <div class="subtitle">Level</div>
-          </div>
-        </ion-col>
-        <ion-col width-80>
-          <div class="progress-bar blue stripes">
+  <ion-grid *ngIf="user">
+    <ion-row>
+      <ion-col width-20>
+        <div class="level" text-center>
+          <div class="title">{{user.level}}</div>
+          <div class="subtitle">Level</div>
+        </div>
+      </ion-col>
+      <ion-col width-80>
+        <div class="progress-bar blue stripes">
           <span [style.width]="experiencePointsPercentage + '%'">
           </span>
-          </div>
-          <div class="experience-counter" text-center>
-            {{user.experiencePoints}} / {{user.experiencePointsToLevelUp}} xp
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+        </div>
+        <div class="experience-counter" text-center>
+          {{user.experiencePoints}} / {{user.experiencePointsToLevelUp}} xp
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-    <ion-grid text-center>
-      <ion-row>
-        <ion-col width-50>
-          <span>Total Kudos</span>
-          <ion-badge item-right>{{user?.totalKudos}}</ion-badge>
-        </ion-col>
-        <ion-col width-50>
-          <span>Weekly Kudos</span>
-          <ion-badge item-right>{{user?.weeklyKudos}}</ion-badge>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <ion-grid text-center>
+    <ion-row>
+      <ion-col width-50>
+        <span>Total Kudos</span>
+        <ion-badge item-right>{{user?.totalKudos}}</ion-badge>
+      </ion-col>
+      <ion-col width-50>
+        <span>Weekly Kudos</span>
+        <ion-badge item-right>{{user?.weeklyKudos}}</ion-badge>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-    <div text-center padding>
-      <button ion-button round outline
-              (click)="openKudosModal()"
-              type="button">Give Kudos
-      </button>
-    </div>
+  <div text-center padding>
+    <button ion-button round outline
+            (click)="openKudosModal()"
+            type="button">Give Kudos
+    </button>
+  </div>
+
+  <div *ngIf="actionsList.length > 0">
+    <ion-card *ngFor="let item of actionsList">
+      <ion-card-content>
+        <kudos-action-item [action]="item" [noShadow]="true"></kudos-action-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content>
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+
+
 
 </ion-content>
 

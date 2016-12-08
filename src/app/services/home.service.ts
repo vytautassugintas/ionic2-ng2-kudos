@@ -46,7 +46,7 @@ export class HomeService {
             .catch(ResponseExtractor.extractString)
     }
 
-    actions(userId: string, page: number, pageSize: number): Observable<string> {
+    actions(userId: string, page: number, pageSize: number): Observable<any> {
         let headers = new Headers({'Content-Type': 'application/json'});
         let params: URLSearchParams = new URLSearchParams();
         params.set('page', page.toString());
@@ -58,7 +58,7 @@ export class HomeService {
             .catch(ResponseExtractor.handleError);
     }
 
-    globalActions(page: number, pageSize: number): Observable<string> {
+    globalActions(page: number, pageSize: number): Observable<any> {
         let headers = new Headers({'Content-Type': 'application/json'});
         let params: URLSearchParams = new URLSearchParams();
         params.set('page', page.toString());
@@ -66,7 +66,7 @@ export class HomeService {
         let options = new RequestOptions({headers: headers, withCredentials: true, search : params});
 
         return this.http.get(this.actionsUrl, options)
-            .map(ResponseExtractor.extractPage)
+            .map(ResponseExtractor.extractJson)
             .catch(ResponseExtractor.handleError);
     }
 
