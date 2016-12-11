@@ -1,11 +1,9 @@
 import {Component} from '@angular/core';
 
-import {NavController, ToastController, ModalController} from 'ionic-angular';
-import {HomeService} from "../../app/services/home.service";
-import {AuthenticationService} from "../../app/services/authentication.service";
-import {KudosForm} from "../../app/forms/kudos.form";
-import {KudosService} from "../../app/services/kudos.service";
+import {NavController, ModalController, PopoverController} from 'ionic-angular';
 import {KudosModalPage} from "../_modals/kudos-modal/kudos-modal";
+import {HomeService} from "../../services/home.service";
+import {MenuPage} from "../_popovers/menu/menu";
 
 @Component({
   selector: 'page-home',
@@ -19,7 +17,7 @@ export class HomePage {
   page: number = 0;
   lastPage: boolean = false;
 
-  constructor(public navCtrl: NavController, private homeService: HomeService, private authService: AuthenticationService, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, private homeService: HomeService, public modalCtrl: ModalController, public popoverCtrl: PopoverController) {
 
   }
 
@@ -102,6 +100,13 @@ export class HomePage {
     });
 
     modal.present();
+  }
+
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(MenuPage);
+    popover.present({
+      ev: myEvent
+    });
   }
 
 }

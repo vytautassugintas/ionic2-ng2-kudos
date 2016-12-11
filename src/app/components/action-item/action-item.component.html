@@ -14,7 +14,7 @@
             <span *ngIf="action.type == 'ACCEPTED_CHALLENGE'"> accepted challenge from <a href="javascript:" (click)="openUserModal(action.challengeResponse.creatorId)">{{action.challengeResponse.creatorFullName}}</a></span>
             <span *ngIf="action.type == 'CREATED_CHALLENGE'"> challenged <a href="javascript:" (click)="openUserModal(action.challengeResponse.participantId)">{{action.challengeResponse.participantFullName}}</a> </span>
             <span *ngIf="action.type == 'ADDED_NEW_IDEA'"> added new idea to wisdom wall</span>
-            <span *ngIf="action.type == 'KUDOS_GIVEN'"> given <ion-badge>{{action.transactionResponse.amount}}</ion-badge> kudos to <a href="javascript:" (click)="openUserModal(action.transactionResponse.receiverId)">{{action.transactionResponse.receiverFullName}}</a></span>
+            <span *ngIf="action.type == 'KUDOS_GIVEN'"> given <ion-badge>{{action.transactionResponse.amount}}</ion-badge> kudos to <a href="javascript:" (click)="openUserModal(action.transactionResponse.receiverId)">{{action.transactionResponse.receiverFullName}}</a> <span *ngIf="action.transactionResponse.endorsement">and endorsed for <ion-badge>{{action.transactionResponse.endorsement}}</ion-badge></span></span>
             <span *ngIf="action.type == 'MARKED_AS_FAILED'"> marked challenge as failed for <a href="javascript:" (click)="openUserModal(action.challengeResponse.participantId)">{{action.challengeResponse.participantFullName}}</a></span>
             <span *ngIf="action.type == 'MARKED_AS_COMPLETED'"> marked challenge as completed for <a href="javascript:" (click)="openUserModal(action.challengeResponse.participantId)">{{action.challengeResponse.participantFullName}}</a></span>
 

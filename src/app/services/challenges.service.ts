@@ -20,13 +20,10 @@ export class ChallengesService {
     private challengesHistoryUrl = API.URL + 'challenge/history';
     private challengesAccomplishedHistoryUrl = API.URL + 'challenge/history/accomplished';
     private challengesFailedHistoryUrl = API.URL + 'challenge/history/failed';
-
     private userChallengesHistoryUrl = API.URL + 'challenge/history/';
     private userChallengesAccomplishedHistoryUrl = API.URL + 'challenge/history/accomplished/';
     private userChallengesFailedHistoryUrl = API.URL + 'challenge/history/failed/';
-
     private challengeCommentsUrl = API.URL + 'challenge/'; //{/{challengeId}/comments}
-
 
     constructor(private http: Http) {
     }
@@ -149,7 +146,7 @@ export class ChallengesService {
         let options = new RequestOptions({headers: headers, withCredentials: true});
 
         return this.http.post(this.challengesUrl + challengeId + "/decline", null, options)
-            .map(ResponseExtractor.extractSucces)
+            .map(ResponseExtractor.extractSuccess)
             .catch(ResponseExtractor.handleError);
     }
 
@@ -158,7 +155,7 @@ export class ChallengesService {
         let options = new RequestOptions({headers: headers, withCredentials: true});
 
         return this.http.post(this.challengesUrl + challengeId + "/cancel", null, options)
-            .map(ResponseExtractor.extractSucces)
+            .map(ResponseExtractor.extractSuccess)
             .catch(ResponseExtractor.handleError);
     }
 
@@ -167,7 +164,7 @@ export class ChallengesService {
         let options = new RequestOptions({headers: headers, withCredentials: true});
 
         return this.http.post(this.challengesUrl + challengeId + "/markAsCompleted", null, options)
-            .map(ResponseExtractor.extractSucces)
+            .map(ResponseExtractor.extractSuccess)
             .catch(ResponseExtractor.handleError);
     }
 
@@ -176,7 +173,7 @@ export class ChallengesService {
         let options = new RequestOptions({headers: headers, withCredentials: true});
 
         return this.http.post(this.challengesUrl + challengeId + "/markAsFailed", null, options)
-            .map(ResponseExtractor.extractSucces)
+            .map(ResponseExtractor.extractSuccess)
             .catch(ResponseExtractor.handleError);
     }
 

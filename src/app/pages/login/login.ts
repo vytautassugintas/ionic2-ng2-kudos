@@ -1,10 +1,9 @@
-import {Component, ViewChild} from '@angular/core';
-import { NavController } from 'ionic-angular';
-import {LoginForm} from "../../app/forms/login.form";
-import {AuthenticationService} from "../../app/services/authentication.service";
-import {HomePage} from "../home/home";
+import {Component} from '@angular/core';
+import {NavController} from 'ionic-angular';
 import {TabsPage} from "../tabs/tabs";
 import {SignupPage} from "../signup/signup";
+import {LoginForm} from "../../forms/login.form";
+import {AuthenticationService} from "../../services/authentication.service";
 
 @Component({
   selector: 'page-login',
@@ -19,32 +18,27 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    console.log('Hello LoginPage Page');
     this.authService.isLogged().subscribe(
       isLogged => {
-        if (isLogged){
+        if (isLogged) {
           this.navCtrl.push(TabsPage);
         }
       }
     )
   }
 
-  submitLogin(){
-    console.log('Submit Login');
-    console.log(this.loginForm);
+  submitLogin() {
     this.authService.login(this.loginForm.userEmail, this.loginForm.password).subscribe(
       response => {
-        console.log(response);
-        console.log("Calling");
         this.navCtrl.push(TabsPage);
       },
       error => {
-        console.log("Error");
+        console.log(error);
       }
     );
   }
 
-  redirectToSignUp(){
+  redirectToSignUp() {
     this.navCtrl.push(SignupPage);
   }
 

@@ -1,0 +1,88 @@
+page-kudos-modal {
+
+  .no-border-radius-bottom{
+    border-bottom-left-radius: 0!important;
+    border-bottom-right-radius: 0!important;
+  }
+
+  .margin-bottom {
+    margin-bottom: 16px;
+  }
+
+  .endorsement{
+    margin-top: 7px;
+    margin-left: 7px;
+    padding: 0 5px;
+  }
+
+  .kudos-form {
+    padding: 5px;
+    margin-top: 10px;
+    border-radius: 4px;
+    background: #f9f9f9;
+    .form-title {
+      margin-top: 7px;
+      margin-left: 7px;
+      padding: 0 5px;
+      color: #555459;
+    }
+  }
+
+  .input-holder {
+    margin: 7px;
+    padding: 5px;
+    textarea {
+      border-radius: 3px;
+      padding: 9px;
+      width: 100%;
+      border: 1px solid #fff;
+      resize: none;
+      &:focus {
+        border-color: #aeaeae;
+      }
+    }
+    input {
+      border-radius: 3px;
+      padding: 9px;
+      width: 100%;
+      border: 1px solid #fff;
+      &:focus {
+        border-color: #aeaeae;
+      }
+    }
+    .error{
+      margin-left: 7px;
+      padding: 3px 0px 3px 5px;
+      font-size: 12px;
+      color: #f53d3d;
+    }
+  }
+
+  .email-predicates-holder-wrapper {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    .email-predicates-holder {
+      position: absolute;
+      width: inherit;
+      background: #ffffff;
+      .predicated-item {
+        padding: 5px;
+        background: #ffffff;
+        border: 1px solid #aeaeae;
+        &:nth-child(n+1) {
+          border-top: 0;
+        }
+        &:last-child {
+          border-bottom-left-radius: 4px;
+          border-bottom-right-radius: 4px;
+        }
+        .predicated-user-email {
+          font-size: 12px;
+          padding-top: 5px;
+        }
+      }
+    }
+  }
+
+}

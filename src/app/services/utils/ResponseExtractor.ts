@@ -3,6 +3,10 @@ import {Observable} from "rxjs";
 
 export class ResponseExtractor{
 
+  static extractSimpleResponse(res: Response){
+    return res;
+  }
+
     static extractString(res: Response){
         return res.toString();
     }
@@ -20,14 +24,14 @@ export class ResponseExtractor{
     }
 
     static handleSimpleError(error: any){
-        return Observable.throw(error._body);
+        return Observable.throw(error);
     }
 
     static extractCallback(res: Response) {
         return res;
     }
 
-    static extractSucces(res: Response){
+    static extractSuccess(res: Response){
         if (res.status == 200){
             return res;
         }

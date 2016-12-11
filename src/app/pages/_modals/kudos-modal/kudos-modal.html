@@ -52,6 +52,19 @@
         </div>
       </div>
 
+      <button ion-button icon-left clear small
+              type="button"
+              (click)="presentActionSheet()">
+        <ion-icon name="add"></ion-icon>
+        Add Endorsement
+      </button>
+
+      <div class="endorsement">
+        <ion-badge *ngIf="kudosForm.endorsement">
+          {{kudosForm.endorsement}}
+        </ion-badge>
+      </div>
+
       <div class="input-holder">
         <input type="number"
                placeholder="Kudos Amount"
@@ -76,20 +89,6 @@
           {{kudosForm.message.length}} / 140
         </span>
       </div>
-
-      <button ion-button icon-left clear small
-              type="button"
-              (click)="presentActionSheet()">
-        <ion-icon name="add"></ion-icon>
-        Add Endorsement
-      </button>
-
-      <div class="endorsement">
-        <ion-badge *ngIf="selectedEndorsement">
-          {{selectedEndorsement}}
-        </ion-badge>
-      </div>
-
 
       <div padding>
         <button ion-button full

@@ -3,11 +3,13 @@ export class KudosForm {
   receiverEmail: string;
   amount: number;
   message: string;
+  endorsement: string;
 
-  constructor(receiverEmail: string, amount: number, message: string) {
+  constructor(receiverEmail: string, amount: number, message: string, endorsement: string) {
     this.receiverEmail = receiverEmail;
     this.amount = amount;
     this.message = message;
+    this.endorsement = endorsement;
   }
 
   validate(userKudosAmount): Error {

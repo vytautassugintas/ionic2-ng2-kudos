@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 
 import {NavController, ModalController} from 'ionic-angular';
-import {KudosService} from "../../app/services/kudos.service";
-import {KudosResponse} from "../../app/model/response/kudos.model";
 import {UserModalPage} from "../_modals/user-modal/user-modal";
+import {KudosService} from "../../services/kudos.service";
+import {KudosResponse} from "../../model/response/kudos.model";
 
 @Component({
   selector: 'page-about',

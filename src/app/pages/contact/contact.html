@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Buddies
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <form class="kudos-form">
+  <div class="input-holder">
+    <input type="text"
+           placeholder="Search for buddy"
+           autocomplete="off"
+           (focus)="onEmailFocus()"
+           (blur)="onEmailBlur()"
+           (ngModelChange)="onEmailInputChange($event)"
+           [ngClass]="showPredicates && emailInputFocused ? 'no-border-radius-bottom' : ''"
+           [(ngModel)]="receiverEmail" name="receiverEmail">
+    <div class="error"
+         *ngIf="error?.field == 'receiver_email'">
+      {{error.message}}
+    </div>
+    <div class="email-predicates-holder-wrapper"
+         *ngIf="showPredicates && emailInputFocused">
+      <div class="email-predicates-holder"
+           *ngFor="let predicate of predicatedEmails">
+        <div class="predicated-item"
+             (click)="selectPredicate(predicate.email)">
+          <div class="predicated-user-name">
+            {{predicate.firstName}} {{predicate.lastName}}
+          </div>
+          <div class="predicated-user-email">
+            {{predicate.email}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </form>
+
+</ion-content>

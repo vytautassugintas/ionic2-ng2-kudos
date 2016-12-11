@@ -1,14 +1,9 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams, ViewController, ModalController} from 'ionic-angular';
-import {HomeService} from "../../../app/services/home.service";
-import {KudosService} from "../../../app/services/kudos.service";
+import {HomeService} from "../../../services/home.service";
+import {KudosService} from "../../../services/kudos.service";
 
-/*
- Generated class for the UserModal page.
 
- See http://ionicframework.com/docs/v2/components/#navigation for more info on
- Ionic pages and navigation.
- */
 @Component({
   selector: 'page-user-modal',
   templateUrl: 'user-modal.html'
@@ -83,7 +78,10 @@ export class UserModalPage {
   }
 
   openUserModal(id) {
-    this.modalCtrl.create(UserModalPage, {userId: id}).present();
+    if (this.userId != id) {
+      this.modalCtrl.create(UserModalPage, {userId: id}).present();
+      this.viewController.dismiss(null);
+    }
   }
 
   dismiss() {

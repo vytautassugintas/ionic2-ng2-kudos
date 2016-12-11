@@ -12,7 +12,7 @@ export class HomeService {
 
     private currentUserProfileUrl = API.URL + 'user/profile';
     private userProfileUrl = API.URL + 'user/profile/';
-    private logoutUrl = API.URL + 'authentication/logout';
+
     private userActionsUrl = API.URL + 'user/actions/';
     private actionsUrl = API.URL + 'relation/feed';
     private emailPredicateUrl = API.URL + 'user/email/';
@@ -35,15 +35,6 @@ export class HomeService {
         return this.http.get(this.userProfileUrl + userId, options)
             .map(ResponseExtractor.extractJson)
             .catch(ResponseExtractor.handleError);
-    }
-
-    logout(): Observable<string>{
-        let headers = new Headers({});
-        let options = new RequestOptions({headers: headers, withCredentials: true});
-            console.log("LOOGING OUT");
-        return this.http.post(this.logoutUrl, null, options)
-            .map(ResponseExtractor.extractSucces)
-            .catch(ResponseExtractor.extractString)
     }
 
     actions(userId: string, page: number, pageSize: number): Observable<any> {

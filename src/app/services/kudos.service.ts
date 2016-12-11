@@ -11,17 +11,15 @@ export class KudosService {
     }
 
     private giveUrl = API.URL + 'kudos/give';
-
     private historyUrl = API.URL + 'kudos/history';
     private historyGivenUrl = API.URL + 'kudos/history/given';
     private historyReceivedUrl = API.URL + 'kudos/history/received';
-
     private userHistory = API.URL + 'kudos/history/'; // {{userId}}
     private userHistoryGivenUrl = API.URL + 'kudos/history/given/'; // {{userId}}
     private userHistoryReceivedUrl = API.URL + 'kudos/history/received/'; // {{userId}}
 
-    public giveKudos(receiverEmail: string, amount: number, message: string): Observable<any> {
-        let body = JSON.stringify({receiverEmail, amount, message});
+    public giveKudos(receiverEmail: string, amount: number, message: string, endorsement: string): Observable<any> {
+        let body = JSON.stringify({receiverEmail, amount, message, endorsement});
         return this.http.post(this.giveUrl, body, RequestHelper.getBasicRequestOptions())
             .map(ResponseExtractor.extractJson)
             .catch(ResponseExtractor.handleError);

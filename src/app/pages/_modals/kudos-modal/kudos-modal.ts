@@ -1,9 +1,10 @@
 import {Component} from '@angular/core';
 import {NavController, ViewController, ToastController, NavParams, ActionSheetController} from 'ionic-angular';
-import {KudosForm} from "../../../app/forms/kudos.form";
-import {KudosService} from "../../../app/services/kudos.service";
-import {HomeService} from "../../../app/services/home.service";
-import {Error} from "../../../app/forms/error";
+import {KudosForm} from "../../../forms/kudos.form";
+import {KudosService} from "../../../services/kudos.service";
+import {HomeService} from "../../../services/home.service";
+import {Error} from "../../../forms/error";
+
 
 @Component({
   selector: 'page-kudos-modal',
@@ -15,11 +16,9 @@ export class KudosModalPage {
   emailInputFocused = false;
   showPredicates = false;
   predicatedEmails = [];
-  kudosForm: KudosForm = new KudosForm("", null, "");
+  kudosForm: KudosForm = new KudosForm("", null, "", "");
   user: any = {};
   error: Error;
-
-  selectedEndorsement: string;
 
   constructor(public navCtrl: NavController, params: NavParams, public viewController: ViewController, public kudosService: KudosService, public toastCtrl: ToastController, public homeService: HomeService, public actionSheetCtrl: ActionSheetController) {
     this.user = params.get('user');
@@ -33,11 +32,11 @@ export class KudosModalPage {
     this.error = this.kudosForm.validate(this.user.weeklyKudos);
 
     if (this.error.field == "") {
-      this.kudosService.giveKudos(this.kudosForm.receiverEmail, this.kudosForm.amount, this.kudosForm.message).subscribe(
+      this.kudosService.giveKudos(this.kudosForm.receiverEmail, this.kudosForm.amount, this.kudosForm.message, this.kudosForm.endorsement).subscribe(
         result => {
           this.presentToast("Kudos sent to " + result.receiverFullName);
           this.viewController.dismiss(this.kudosForm.amount);
-          this.kudosForm = new KudosForm("", null, "");
+          this.kudosForm = new KudosForm("", null, "", "");
         }
       );
     }
@@ -117,7 +116,7 @@ export class KudosModalPage {
       return {
         text: title,
         handler: () => {
-          this.selectedEndorsement = title;
+          this.kudosForm.endorsement = title;
         }
       }
     }
