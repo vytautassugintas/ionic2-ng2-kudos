@@ -12,7 +12,7 @@ export class MenuPage {
   constructor(public navCtrl: NavController, public authService: AuthenticationService) {}
 
   ionViewDidLoad() {
-    console.log('Hello MenuPage Page');
+
   }
 
   logout(){
