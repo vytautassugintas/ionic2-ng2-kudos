@@ -1,9 +1,13 @@
 import {Component} from '@angular/core';
-import {NavController, ViewController, ToastController, NavParams, ActionSheetController} from 'ionic-angular';
+import {
+  NavController, ViewController, ToastController, NavParams, ActionSheetController,
+  ModalController
+} from 'ionic-angular';
 import {KudosForm} from "../../../forms/kudos.form";
 import {KudosService} from "../../../services/kudos.service";
 import {HomeService} from "../../../services/home.service";
 import {Error} from "../../../forms/error";
+import {EndorsementsModalPage} from "../endorsements-modal/endorsements-modal";
 
 
 @Component({
@@ -20,7 +24,7 @@ export class KudosModalPage {
   user: any = {};
   error: Error;
 
-  constructor(public navCtrl: NavController, params: NavParams, public viewController: ViewController, public kudosService: KudosService, public toastCtrl: ToastController, public homeService: HomeService, public actionSheetCtrl: ActionSheetController) {
+  constructor(public navCtrl: NavController, params: NavParams, public viewController: ViewController, public kudosService: KudosService, public toastCtrl: ToastController, public homeService: HomeService, public modalCtrl: ModalController, public actionSheetCtrl: ActionSheetController) {
     this.user = params.get('user');
   }
 
@@ -69,11 +73,26 @@ export class KudosModalPage {
         this.createActionSheetButton("Nice"),
         this.createActionSheetButton("Carry"),
         this.createActionSheetButton("Open"),
+        this.createActionSheetButton("Tech"),
+        this.createActionSheetButton("Open"),
+        this.createActionSheetButton("Open"),
         this.createActionSheetButton("Cancel")
       ]
     });
 
     actionSheet.present();
+  }
+
+  presentEndorsementsModal(){
+    let modal = this.modalCtrl.create(EndorsementsModalPage);
+    modal.onDidDismiss(data => {
+      if (data) {
+        this.kudosForm.endorsement = data;
+      }
+    });
+
+    modal.present();
+
   }
 
   onEmailInputChange(email) {
@@ -92,14 +111,6 @@ export class KudosModalPage {
       this.emailInputFocused = false
     }, 30)
 
-  }
-
-  onMessageFocus() {
-    this.showMessageCharactersCounter = true;
-  }
-
-  onMessageBlur() {
-    this.showMessageCharactersCounter = false;
   }
 
   dismiss() {

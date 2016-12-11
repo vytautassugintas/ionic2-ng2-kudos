@@ -16,6 +16,8 @@ import {UserModalPage} from "./pages/_modals/user-modal/user-modal";
 import {UserIconComponent} from "./components/user-icon/user-icon.component";
 import {ActionItemComponent} from "./components/action-item/action-item.component";
 import {MenuPage} from "./pages/_popovers/menu/menu";
+import {EndorsedTransactionsModalPage} from "./pages/_modals/endorsed-transactions-modal/endorsed-transactions-modal";
+import {EndorsementsModalPage} from "./pages/_modals/endorsements-modal/endorsements-modal";
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import {MenuPage} from "./pages/_popovers/menu/menu";
     HomePage,
     KudosModalPage,
     UserModalPage,
+    EndorsedTransactionsModalPage,
+    EndorsementsModalPage,
     MenuPage,
     ShopPage,
     LoginPage,
@@ -44,6 +48,8 @@ import {MenuPage} from "./pages/_popovers/menu/menu";
     HomePage,
     KudosModalPage,
     UserModalPage,
+    EndorsedTransactionsModalPage,
+    EndorsementsModalPage,
     MenuPage,
     ShopPage,
     LoginPage,

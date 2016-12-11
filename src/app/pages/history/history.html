@@ -1,26 +1,55 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar no-border-bottom>
     <ion-title>
       History
     </ion-title>
   </ion-navbar>
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="segment" no-lines>
+      <ion-segment-button value="transactions">
+        Transactions
+      </ion-segment-button>
+      <ion-segment-button value="endorsements">
+        Endorsements
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let item of kudosHistoryList">
-    <ion-card-content>
-      <a href="javascript:"
-         (click)="openUserModal(item.senderId)">{{item.senderFullName}}</a> sent
-      <ion-badge>{{item.amount}}</ion-badge>
-      <span> kudos </span> to
-      <a href="javascript:"
-         (click)="openUserModal(item.receiverId)">{{item.receiverFullName}}</a>
-      <span *ngIf="item.endorsement"> and endorsed for <ion-badge>{{item.endorsement}}</ion-badge></span>
-      <span class="kudos-date">{{item.date | date}}</span>
-      <div class="message">
-        <ion-icon name="mail"></ion-icon>
-        {{item.message}}
-      </div>
-    </ion-card-content>
-  </ion-card>
+  <div *ngIf="segment == 'transactions'">
+    <ion-card *ngFor="let item of kudosHistoryList">
+      <ion-card-content>
+        <a href="javascript:"
+           (click)="openUserModal(item.senderId)">{{item.senderFullName}}</a> sent
+        <ion-badge>{{item.amount}}</ion-badge>
+        <span> kudos </span> to
+        <a href="javascript:"
+           (click)="openUserModal(item.receiverId)">{{item.receiverFullName}}</a>
+        <span *ngIf="item.endorsement"> and endorsed for <b>{{item.endorsement}}</b></span>
+        <span class="kudos-date">{{item.date | date}}</span>
+        <div class="message">
+          <ion-icon name="mail"></ion-icon>
+          {{item.message}}
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div *ngIf="segment == 'endorsements'">
+    <div *ngIf="endorsementsList">
+      <ion-list no-lines>
+        <ion-item *ngFor="let endorsement of endorsementsList"
+                  (click)="openEndorsedTransactionsModal(endorsement.title)">
+          <label item-left>
+            {{endorsement.title}}
+          </label>
+          <ion-badge item-right>
+            {{endorsement.value}}
+          </ion-badge>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+
 </ion-content>

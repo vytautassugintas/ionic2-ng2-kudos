@@ -1,0 +1,32 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>endorsements-modal</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list>
+    <span *ngIf="!endorsements[0]?.group">
+      <ion-item *ngFor="let filteredItem of endorsements"
+                (click)="selectEndorsement(filteredItem)">
+        {{filteredItem}}
+      </ion-item>
+    </span>
+
+    <span *ngIf="endorsements[0]?.group">
+      <ion-item-group *ngFor="let group of endorsements">
+        <ion-item-divider *ngIf="group.group" color="primary">{{group.group}}</ion-item-divider>
+        <ion-item tappable
+                  *ngFor="let groupItem of group.endorsements "
+                  (click)="selectEndorsement(groupItem.endorsement)">
+          {{groupItem.endorsement}}
+        </ion-item>
+      </ion-item-group>
+    </span>
+  </ion-list>
+
+</ion-content>

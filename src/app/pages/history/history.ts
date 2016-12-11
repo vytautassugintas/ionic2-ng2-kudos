@@ -4,6 +4,7 @@ import {NavController, ModalController} from 'ionic-angular';
 import {UserModalPage} from "../_modals/user-modal/user-modal";
 import {KudosService} from "../../services/kudos.service";
 import {KudosResponse} from "../../model/response/kudos.model";
+import {EndorsedTransactionsModalPage} from "../_modals/endorsed-transactions-modal/endorsed-transactions-modal";
 
 @Component({
   selector: 'page-about',
@@ -12,10 +13,13 @@ import {KudosResponse} from "../../model/response/kudos.model";
 })
 export class HistoryPage {
 
+  segment: string = 'transactions';
   kudosHistoryList: Array<KudosResponse>;
+  endorsementsList = [];
 
   constructor(public navCtrl: NavController, private kudosService: KudosService, public modalCtrl: ModalController) {
     this.getKudosHistory(0, 10);
+    this.getEndorsements();
   }
 
   getKudosHistory(page: number, size: number) {
@@ -24,8 +28,26 @@ export class HistoryPage {
     );
   }
 
+  getEndorsements() {
+    this.kudosService.getEndorsements().subscribe(
+      endorsements => {
+          for (let key in endorsements){
+            this.endorsementsList.push({
+              title: key,
+              value: endorsements[key]
+            });
+            console.log(key);
+          }
+      }
+    )
+  }
+
   openUserModal(id) {
     this.modalCtrl.create(UserModalPage, {userId: id}).present();
+  }
+
+  openEndorsedTransactionsModal(endorsement) {
+    this.navCtrl.push(EndorsedTransactionsModalPage, {endorsement: endorsement});
   }
 
 }

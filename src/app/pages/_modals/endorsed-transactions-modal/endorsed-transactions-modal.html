@@ -1,0 +1,35 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Endorsed Transactions</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <div *ngIf="endorsedTransactionsList.length">
+    <ion-card *ngFor="let item of endorsedTransactionsList">
+      <ion-card-content>
+        <a href="javascript:"
+           (click)="openUserModal(item.senderId)">{{item.senderFullName}}</a> sent
+        <ion-badge>{{item.amount}}</ion-badge>
+        <span> kudos </span> to
+        <a href="javascript:"
+           (click)="openUserModal(item.receiverId)">{{item.receiverFullName}}</a>
+        <span class="kudos-date">{{item.date | date}}</span>
+        <div class="message">
+          <ion-icon name="mail"></ion-icon>
+          {{item.message}}
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content>
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+
+</ion-content>
