@@ -1,14 +1,11 @@
 <ion-header>
-
   <ion-navbar>
     <ion-title>endorsements-modal</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content>
-  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-searchbar (ionInput)="searchItems($event)"></ion-searchbar>
   <ion-list>
     <span *ngIf="!endorsements[0]?.group">
       <ion-item *ngFor="let filteredItem of endorsements"
