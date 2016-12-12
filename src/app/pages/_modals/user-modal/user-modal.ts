@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {NavController, NavParams, ViewController, ModalController} from 'ionic-angular';
 import {HomeService} from "../../../services/home.service";
 import {KudosService} from "../../../services/kudos.service";
+import {EndorsedTransactionsModalPage} from "../endorsed-transactions-modal/endorsed-transactions-modal";
+import {UserEndorsedTransactionsModalPage} from "../user-endorsed-transactions-modal/user-endorsed-transactions-modal";
 
 
 @Component({
@@ -10,9 +12,12 @@ import {KudosService} from "../../../services/kudos.service";
 })
 export class UserModalPage {
 
+  segment: string = "transactions";
+
   userId: string;
   userProfile: any = {};
   kudosHistoryList = [];
+  endorsementsList = [];
 
   page: number = 0;
   lastPage: boolean = false;
@@ -24,6 +29,7 @@ export class UserModalPage {
   ionViewDidLoad() {
     this.loadUserProfile(this.userId);
     this.getKudosHistory(this.page, 10);
+    this.getEndorsements();
   }
 
   loadUserProfile(id) {
@@ -41,6 +47,18 @@ export class UserModalPage {
     return this.userProfile.firstName + ' ' + this.userProfile.lastName;
   }
 
+  getEndorsements() {
+    this.kudosService.getUserEndorsements(this.userId).subscribe(
+      endorsements => {
+        for (let key in endorsements){
+          this.endorsementsList.push({
+            title: key,
+            value: endorsements[key]
+          });
+        }
+      }
+    )
+  }
 
   getKudosHistory(page, pageSize) {
     this.kudosService.getUserHistory(this.userId, page, pageSize).subscribe(
@@ -82,6 +100,10 @@ export class UserModalPage {
       this.modalCtrl.create(UserModalPage, {userId: id}).present();
       this.viewController.dismiss(null);
     }
+  }
+
+  openEndorsedTransactionsModal(endorsement) {
+    this.navCtrl.push(UserEndorsedTransactionsModalPage, {userId: this.userId, endorsement: endorsement});
   }
 
   dismiss() {

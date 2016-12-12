@@ -18,6 +18,7 @@ import {ActionItemComponent} from "./components/action-item/action-item.componen
 import {MenuPage} from "./pages/_popovers/menu/menu";
 import {EndorsedTransactionsModalPage} from "./pages/_modals/endorsed-transactions-modal/endorsed-transactions-modal";
 import {EndorsementsModalPage} from "./pages/_modals/endorsements-modal/endorsements-modal";
+import {UserEndorsedTransactionsModalPage} from "./pages/_modals/user-endorsed-transactions-modal/user-endorsed-transactions-modal";
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {EndorsementsModalPage} from "./pages/_modals/endorsements-modal/endorsem
     UserModalPage,
     EndorsedTransactionsModalPage,
     EndorsementsModalPage,
+    UserEndorsedTransactionsModalPage,
     MenuPage,
     ShopPage,
     LoginPage,
@@ -50,6 +52,7 @@ import {EndorsementsModalPage} from "./pages/_modals/endorsements-modal/endorsem
     UserModalPage,
     EndorsedTransactionsModalPage,
     EndorsementsModalPage,
+    UserEndorsedTransactionsModalPage,
     MenuPage,
     ShopPage,
     LoginPage,

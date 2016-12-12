@@ -36,7 +36,6 @@ export class HistoryPage {
               title: key,
               value: endorsements[key]
             });
-            console.log(key);
           }
       }
     )

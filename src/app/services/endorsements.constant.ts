@@ -31,10 +31,7 @@ export class ENDORSEMENT {
         {endorsement: "Performance Management"},
         {endorsement: "Supervising"},
         {endorsement: "Managing"},
-        {endorsement: "Manager Management"},
         {endorsement: "Talent Management"},
-        {endorsement: "Managing Remote Teams"},
-        {endorsement: "Managing Virtual Teams"},
         {endorsement: "Crisis Management"}
       ]
     },

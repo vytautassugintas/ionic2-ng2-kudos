@@ -21,7 +21,8 @@ export class KudosService {
   private endorsementsUrl = API.URL + 'kudos/endorsements';
   private userEndorsementsUrl = API.URL + 'kudos/endorsements/'; // {{userId}}
 
-  private userTransactionsByEndorsementUrl = API.URL + 'kudos/transactions/by/endorsement/'; // {{endorsement}}
+  private transactionsByEndorsementUrl = API.URL + 'kudos/transactions/by/endorsement/'; // {{endorsement}}
+  private userTransactionsByEndorsementUrl = API.URL + 'kudos/transactions/by/endorsement/'; // {{userId}}/{{endorsement}}
 
 
 
@@ -80,8 +81,14 @@ export class KudosService {
       .catch(ResponseExtractor.handleError);
   }
 
-  public getUserTransactionsByEndorsement(endorsement: string, page: number, pageSize: number): Observable<any>{
-    return this.http.get(this.userTransactionsByEndorsementUrl + endorsement, RequestHelper.getPageableRequestOptions(page, pageSize))
+  public getTransactionsByEndorsement(endorsement: string, page: number, pageSize: number): Observable<any>{
+    return this.http.get(this.transactionsByEndorsementUrl + endorsement, RequestHelper.getPageableRequestOptions(page, pageSize))
+      .map(ResponseExtractor.extractJson)
+      .catch(ResponseExtractor.handleError);
+  }
+
+  public getUserTransactionsByEndorsement(userId: string, endorsement: string, page: number, pageSize: number): Observable<any>{
+    return this.http.get(this.userTransactionsByEndorsementUrl + userId + "/" + endorsement, RequestHelper.getPageableRequestOptions(page, pageSize))
       .map(ResponseExtractor.extractJson)
       .catch(ResponseExtractor.handleError);
   }

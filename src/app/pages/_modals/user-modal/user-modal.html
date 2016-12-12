@@ -45,7 +45,16 @@
 
     </div>
 
-    <div>
+    <ion-segment [(ngModel)]="segment">
+      <ion-segment-button value="transactions">
+        Transactions
+      </ion-segment-button>
+      <ion-segment-button value="endorsements">
+        Endorsements
+      </ion-segment-button>
+    </ion-segment>
+
+    <div *ngIf="segment == 'transactions'">
       <ion-card *ngFor="let item of kudosHistoryList">
         <ion-card-content>
           <a href="javascript:"
@@ -68,24 +77,21 @@
       </ion-infinite-scroll>
     </div>
 
-<!--    <ion-grid>
-      <ion-row>
-        <ion-col width-33>
-          <kudos-user-icon fullName="{{getUserFullName()}}" size="2"></kudos-user-icon>
-        </ion-col>
-        <ion-col width-67>
-          <h4>{{userProfile.firstName}} {{userProfile.lastName}}</h4>
-          <div>
-            <span>Total Kudos <ion-badge>{{userProfile.totalKudos}}</ion-badge></span>
-            <div class="level">
-              <div class="title">{{userProfile.level}}</div>
-              <div class="subtitle">Level</div>
-            </div>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>-->
-
+    <div *ngIf="segment == 'endorsements'">
+      <div *ngIf="endorsementsList">
+        <ion-list no-lines>
+          <ion-item *ngFor="let endorsement of endorsementsList"
+                    (click)="openEndorsedTransactionsModal(endorsement.title)">
+            <label item-left>
+              {{endorsement.title}}
+            </label>
+            <ion-badge item-right>
+              {{endorsement.value}}
+            </ion-badge>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
 
   </div>
 </ion-content>
