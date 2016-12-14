@@ -90,9 +90,7 @@ export class KudosModalPage {
         this.kudosForm.endorsement = data;
       }
     });
-
     modal.present();
-
   }
 
   onEmailInputChange(email) {

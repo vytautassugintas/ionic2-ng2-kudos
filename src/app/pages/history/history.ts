@@ -37,6 +37,7 @@ export class HistoryPage {
               value: endorsements[key]
             });
           }
+          this.endorsementsList.sort((n1, n2) => n2.value - n1.value);
       }
     )
   }

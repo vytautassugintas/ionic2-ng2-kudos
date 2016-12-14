@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <ion-title>
+      Leaders
+    </ion-title>
+  </ion-navbar>
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="segment" no-lines>
+      <ion-segment-button value="receivers">
+        Receivers
+      </ion-segment-button>
+      <ion-segment-button value="senders">
+        Senders
+      </ion-segment-button>
+      <ion-segment-button value="endorsement">
+        Endorsements
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="segment == 'receivers'">
+    <div *ngIf="receiversList">
+      <ion-list no-lines>
+        <ion-item *ngFor="let receiver of receiversList"
+                  (click)="openUserModal(receiver.userId)">
+          <label item-left>
+            {{receiver.fullName}}
+          </label>
+          <ion-badge item-right>
+            {{receiver.kudosAmount}}
+          </ion-badge>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+
+  <div *ngIf="segment == 'senders'">
+    <div *ngIf="sendersList">
+      <ion-list no-lines>
+        <ion-item *ngFor="let sender of sendersList"
+                  (click)="openUserModal(sender.userId)">
+          <label item-left>
+            {{sender.fullName}}
+          </label>
+          <ion-badge item-right>
+            {{sender.kudosAmount}}
+          </ion-badge>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+
+  <div *ngIf="segment == 'endorsement'">
+    <div text-center>
+      <button ion-button icon-right clear
+              type="button"
+              (click)="presentEndorsementsModal()">
+        Select Endorsement
+        <ion-icon name="arrow-dropright"></ion-icon>
+      </button>
+    </div>
+    <div *ngIf="endorsedLeadersList">
+      <ion-list no-lines>
+        <ion-item *ngFor="let leader of endorsedLeadersList"
+                  (click)="openUserModal(leader.userId)">
+          <label item-left>
+            {{leader.fullName}}
+          </label>
+          <ion-badge item-right>
+            {{leader.kudosAmount}}
+          </ion-badge>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+
+</ion-content>

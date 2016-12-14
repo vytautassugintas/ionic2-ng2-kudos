@@ -19,6 +19,8 @@ import {MenuPage} from "./pages/_popovers/menu/menu";
 import {EndorsedTransactionsModalPage} from "./pages/_modals/endorsed-transactions-modal/endorsed-transactions-modal";
 import {EndorsementsModalPage} from "./pages/_modals/endorsements-modal/endorsements-modal";
 import {UserEndorsedTransactionsModalPage} from "./pages/_modals/user-endorsed-transactions-modal/user-endorsed-transactions-modal";
+import {LeadersPage} from "./pages/leaders/leaders";
+import {LeaderboardService} from "./services/leaderboard.service";
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import {UserEndorsedTransactionsModalPage} from "./pages/_modals/user-endorsed-t
     ShopPage,
     LoginPage,
     SignupPage,
+    LeadersPage,
     TabsPage,
     UserIconComponent,
     ActionItemComponent
@@ -57,6 +60,7 @@ import {UserEndorsedTransactionsModalPage} from "./pages/_modals/user-endorsed-t
     ShopPage,
     LoginPage,
     SignupPage,
+    LeadersPage,
     TabsPage,
     UserIconComponent,
     ActionItemComponent
@@ -64,7 +68,8 @@ import {UserEndorsedTransactionsModalPage} from "./pages/_modals/user-endorsed-t
   providers: [
     AuthenticationService,
     HomeService,
-    KudosService
+    KudosService,
+    LeaderboardService
   ]
 })
 export class AppModule {

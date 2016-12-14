@@ -13,12 +13,10 @@ import {UserEndorsedTransactionsModalPage} from "../user-endorsed-transactions-m
 export class UserModalPage {
 
   segment: string = "transactions";
-
   userId: string;
   userProfile: any = {};
   kudosHistoryList = [];
   endorsementsList = [];
-
   page: number = 0;
   lastPage: boolean = false;
 
@@ -39,10 +37,6 @@ export class UserModalPage {
     )
   }
 
-  loadUserKudosHistory(id) {
-
-  }
-
   getUserFullName() {
     return this.userProfile.firstName + ' ' + this.userProfile.lastName;
   }
@@ -56,6 +50,9 @@ export class UserModalPage {
             value: endorsements[key]
           });
         }
+        this.endorsementsList.sort((n1, n2) => {
+          return n2.value - n1.value;
+        })
       }
     )
   }
