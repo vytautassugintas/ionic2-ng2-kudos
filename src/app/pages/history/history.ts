@@ -16,15 +16,20 @@ export class HistoryPage {
   segment: string = 'transactions';
   kudosHistoryList: Array<KudosResponse>;
   endorsementsList = [];
+  page: number = 0;
+  lastPage: boolean = false;
 
   constructor(public navCtrl: NavController, private kudosService: KudosService, public modalCtrl: ModalController) {
-    this.getKudosHistory(0, 10);
+    this.getKudosHistory(this.page, 10);
     this.getEndorsements();
   }
 
   getKudosHistory(page: number, size: number) {
     this.kudosService.getHistory(page, size).subscribe(
-      history => this.kudosHistoryList = history.content
+      history => {
+        this.kudosHistoryList = history.content;
+        this.page++;
+      }
     );
   }
 
@@ -40,6 +45,27 @@ export class HistoryPage {
           this.endorsementsList.sort((n1, n2) => n2.value - n1.value);
       }
     )
+  }
+
+  doInfinite(infiniteScroll) {
+    if (this.lastPage) {
+      infiniteScroll.enable(false);
+    } else {
+      this.kudosService.getHistory(this.page, 10).subscribe(
+        result => {
+          this.page++;
+          for (var item of result.content) {
+            this.kudosHistoryList.push(item);
+          }
+          infiniteScroll.complete();
+
+          if (result.last) {
+            this.lastPage = true;
+            infiniteScroll.enable(false);
+          }
+
+        })
+    }
   }
 
   openUserModal(id) {
