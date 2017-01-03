@@ -13,6 +13,10 @@ export class EndorsementsModalPage {
   constructor(public navCtrl: NavController, public viewController: ViewController) {
   }
 
+  dismiss() {
+    this.viewController.dismiss(null);
+  }
+
   ionViewDidLoad() {
     this.initializeItems();
   }
