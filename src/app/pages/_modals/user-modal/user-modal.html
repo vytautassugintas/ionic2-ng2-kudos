@@ -43,6 +43,19 @@
         </ion-row>
       </ion-grid>
 
+      <div text-center *ngIf="userId != currentUserId">
+        <button *ngIf="userProfile.canFollow"
+                ion-button round small
+                (click)="follow(userProfile.id)"
+                type="button">Follow
+        </button>
+        <button *ngIf="!userProfile.canFollow"
+                ion-button round outline small
+                (click)="unfollow(userProfile.id)"
+                type="button">Unfollow
+        </button>
+      </div>
+
     </div>
 
     <ion-segment [(ngModel)]="segment">

@@ -14,9 +14,16 @@ export class ContactPage {
   showPredicates: boolean = false;
   receiverEmail: string = "";
   predicatedEmails = [];
+  followingList: any;
 
   constructor(public navCtrl: NavController, public homeService: HomeService) {
 
+  }
+
+  ionViewWillEnter() {
+    this.homeService.getFollowing(0, 20).subscribe(
+      following => this.followingList = following.content
+    )
   }
 
   loadPredicates(name) {

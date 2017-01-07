@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams, ViewController, ModalController} from 'ionic-angular';
+import {NavController, NavParams, ViewController, ModalController, ToastController} from 'ionic-angular';
 import {HomeService} from "../../../services/home.service";
 import {KudosService} from "../../../services/kudos.service";
 import {EndorsedTransactionsModalPage} from "../endorsed-transactions-modal/endorsed-transactions-modal";
@@ -13,6 +13,7 @@ import {UserEndorsedTransactionsModalPage} from "../user-endorsed-transactions-m
 export class UserModalPage {
 
   segment: string = "transactions";
+  currentUserId: string;
   userId: string;
   userProfile: any = {};
   kudosHistoryList = [];
@@ -20,8 +21,9 @@ export class UserModalPage {
   page: number = 0;
   lastPage: boolean = false;
 
-  constructor(public navCtrl: NavController, public params: NavParams, public modalCtrl: ModalController, public viewController: ViewController, public homeService: HomeService, public kudosService: KudosService) {
+  constructor(public navCtrl: NavController, public params: NavParams, public modalCtrl: ModalController, public toastCtrl: ToastController, public viewController: ViewController, public homeService: HomeService, public kudosService: KudosService) {
     this.userId = params.get("userId");
+    this.currentUserId = this.homeService.currentUserId;
   }
 
   ionViewDidLoad() {
@@ -92,11 +94,33 @@ export class UserModalPage {
     }
   }
 
+  follow(id: string){
+    this.homeService.follow(id).subscribe(
+      ok => this.presentToast("Started to follow " + this.userProfile.firstName)
+    );
+    this.userProfile.canFollow = false;
+  }
+
+  unfollow(id: string){
+    this.homeService.unfollow(id).subscribe(
+      ok => this.presentToast("Unfollowed " + this.userProfile.firstName)
+    );
+    this.userProfile.canFollow = true;
+
+  }
+
   openUserModal(id) {
     if (this.userId != id) {
       this.modalCtrl.create(UserModalPage, {userId: id}).present();
       this.viewController.dismiss(null);
     }
+  }
+
+  presentToast(message: string) {
+    this.toastCtrl.create({
+      message: message,
+      duration: 3000
+    }).present();
   }
 
   openEndorsedTransactionsModal(endorsement) {
