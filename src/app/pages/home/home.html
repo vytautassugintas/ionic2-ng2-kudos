@@ -3,6 +3,9 @@
     <ion-title>Home</ion-title>
 
     <ion-buttons end>
+      <button ion-button icon-only (click)="openSearchUserModal()">
+        <ion-icon name="search"></ion-icon>
+      </button>
       <button ion-button icon-only (click)="presentPopover($event)">
         <ion-icon name="more"></ion-icon>
       </button>

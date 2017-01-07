@@ -27,7 +27,7 @@
         <ion-item *ngFor="let receiver of receiversList"
                   (click)="openUserModal(receiver.userId)">
           <label item-left>
-            {{receiver.fullName}}
+            <ion-icon name="trophy"></ion-icon> {{receiver.fullName}}
           </label>
           <ion-badge item-right>
             {{receiver.kudosAmount}}
@@ -43,7 +43,7 @@
         <ion-item *ngFor="let sender of sendersList"
                   (click)="openUserModal(sender.userId)">
           <label item-left>
-            {{sender.fullName}}
+            <ion-icon name="trophy"></ion-icon> {{sender.fullName}}
           </label>
           <ion-badge item-right>
             {{sender.kudosAmount}}
@@ -67,7 +67,7 @@
         <ion-item *ngFor="let leader of endorsedLeadersList"
                   (click)="openUserModal(leader.userId)">
           <label item-left>
-            {{leader.fullName}}
+            <ion-icon name="trophy"></ion-icon> {{leader.fullName}}
           </label>
           <ion-badge item-right>
             {{leader.kudosAmount}}

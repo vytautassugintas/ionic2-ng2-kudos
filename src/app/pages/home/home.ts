@@ -4,6 +4,7 @@ import {NavController, ModalController, PopoverController} from 'ionic-angular';
 import {KudosModalPage} from "../_modals/kudos-modal/kudos-modal";
 import {HomeService} from "../../services/home.service";
 import {MenuPage} from "../_popovers/menu/menu";
+import {SearchUserModal} from "../_modals/search-user-modal/search-user-modal";
 
 @Component({
   selector: 'page-home',
@@ -98,7 +99,17 @@ export class HomePage {
         this.user.weeklyKudos -= data;
       }
     });
+    modal.present();
+  }
 
+  openSearchUserModal(){
+    let modal = this.modalCtrl.create(SearchUserModal);
+    modal.onDidDismiss(data => {
+      if (data) {
+        this.increaseUserExperiencePoints(data * 2);
+        this.user.weeklyKudos -= data;
+      }
+    });
     modal.present();
   }
 

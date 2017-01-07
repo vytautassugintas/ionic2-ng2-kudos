@@ -106,7 +106,6 @@ export class UserModalPage {
       ok => this.presentToast("Unfollowed " + this.userProfile.firstName)
     );
     this.userProfile.canFollow = true;
-
   }
 
   openUserModal(id) {

@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {IonicApp, IonicModule} from 'ionic-angular';
 import {MyApp} from './app.component';
-import {ContactPage} from './pages/contact/contact';
+
 import {HomePage} from './pages/home/home';
 import {TabsPage} from './pages/tabs/tabs';
 import {LoginPage} from './pages/login/login';
@@ -21,18 +21,21 @@ import {EndorsementsModalPage} from "./pages/_modals/endorsements-modal/endorsem
 import {UserEndorsedTransactionsModalPage} from "./pages/_modals/user-endorsed-transactions-modal/user-endorsed-transactions-modal";
 import {LeadersPage} from "./pages/leaders/leaders";
 import {LeaderboardService} from "./services/leaderboard.service";
+import {RelationsPage} from "./pages/relations/relations";
+import {SearchUserModal} from "./pages/_modals/search-user-modal/search-user-modal";
 
 @NgModule({
   declarations: [
     MyApp,
     HistoryPage,
-    ContactPage,
+    RelationsPage,
     HomePage,
     KudosModalPage,
     UserModalPage,
     EndorsedTransactionsModalPage,
     EndorsementsModalPage,
     UserEndorsedTransactionsModalPage,
+    SearchUserModal,
     MenuPage,
     ShopPage,
     LoginPage,
@@ -49,13 +52,14 @@ import {LeaderboardService} from "./services/leaderboard.service";
   entryComponents: [
     MyApp,
     HistoryPage,
-    ContactPage,
+    RelationsPage,
     HomePage,
     KudosModalPage,
     UserModalPage,
     EndorsedTransactionsModalPage,
     EndorsementsModalPage,
     UserEndorsedTransactionsModalPage,
+    SearchUserModal,
     MenuPage,
     ShopPage,
     LoginPage,

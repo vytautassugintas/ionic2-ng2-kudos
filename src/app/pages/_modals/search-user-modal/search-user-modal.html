@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Search User</ion-title>
+    <ion-buttons left>
+      <button ion-button (click)="dismiss()">
+        <span color="primary" showWhen="ios">Close</span>
+        <ion-icon name="close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-searchbar
+    [(ngModel)]="searchEmail"
+    (ionInput)="onInput($event)"
+    (ionClear)="onClear($event)">
+  </ion-searchbar>
+
+    <div *ngIf="showPredicates && predicatedEmails.length > 0">
+      <ion-card *ngFor="let user of predicatedEmails"
+                (click)="openUserModal(user.id)">
+        <ion-item>
+          <ion-avatar item-left>
+            <kudos-user-icon [fullName]="user.firstName + ' ' + user.lastName"></kudos-user-icon>
+          </ion-avatar>
+          <h2>{{user.firstName}} {{user.lastName}}</h2>
+          <p>{{user.email}}</p>
+          <p class="__relation-date-label"
+             *ngIf="!user.canFollow">
+            Following since {{user.followingSince | date}}
+          </p>
+        </ion-item>
+      </ion-card>
+    </div>
+</ion-content>

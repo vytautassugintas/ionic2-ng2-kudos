@@ -26,6 +26,9 @@ export class KudosModalPage {
 
   constructor(public navCtrl: NavController, params: NavParams, public viewController: ViewController, public kudosService: KudosService, public toastCtrl: ToastController, public homeService: HomeService, public modalCtrl: ModalController, public actionSheetCtrl: ActionSheetController) {
     this.user = params.get('user');
+    if (params.get('email')){
+      this.kudosForm.receiverEmail = params.get('email');
+    }
   }
 
   ionViewDidLoad() {
@@ -64,23 +67,6 @@ export class KudosModalPage {
       message: message,
       duration: 3000
     }).present();
-  }
-
-  presentActionSheet() {
-    let actionSheet = this.actionSheetCtrl.create({
-      title: 'Modify your album',
-      buttons: [
-        this.createActionSheetButton("Nice"),
-        this.createActionSheetButton("Carry"),
-        this.createActionSheetButton("Open"),
-        this.createActionSheetButton("Tech"),
-        this.createActionSheetButton("Open"),
-        this.createActionSheetButton("Open"),
-        this.createActionSheetButton("Cancel")
-      ]
-    });
-
-    actionSheet.present();
   }
 
   presentEndorsementsModal(){

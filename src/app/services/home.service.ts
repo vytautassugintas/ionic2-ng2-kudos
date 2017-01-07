@@ -127,4 +127,16 @@ export class HomeService {
       .catch(ResponseExtractor.handleError);
   }
 
+  getFollowers(page: number, pageSize: number): Observable<any> {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('page', page.toString());
+    params.set('size', pageSize.toString());
+    let options = new RequestOptions({headers: headers, withCredentials: true, search: params});
+
+    return this.http.get(this.followersUrl, options)
+      .map(ResponseExtractor.extractJson)
+      .catch(ResponseExtractor.handleError);
+  }
+
 }

@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <ion-title>
+      Buddies
+    </ion-title>
+  </ion-navbar>
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="segment" no-lines>
+      <ion-segment-button value="following">
+        Following ({{followingCount}})
+      </ion-segment-button>
+      <ion-segment-button value="followers">
+        Followers ({{followersCount}})
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-searchbar
+  [(ngModel)]="searchEmail"
+  (ionInput)="onInput($event)"
+  (ionClear)="onClear($event)">
+</ion-searchbar>
+
+<ion-content>
+  <div *ngIf="predicatedEmails.length > 0">
+    <ion-card *ngFor="let user of predicatedEmails"
+              (click)="openUserModal(user.id)">
+      <ion-item>
+        <ion-avatar item-left>
+          <kudos-user-icon [fullName]="user.firstName + ' ' + user.lastName"></kudos-user-icon>
+        </ion-avatar>
+        <h2>{{user.firstName}} {{user.lastName}}</h2>
+        <p>{{user.email}}</p>
+        <p class="__relation-date-label"
+           *ngIf="!user.canFollow">
+          Following since {{user.followingSince | date}}
+        </p>
+      </ion-item>
+    </ion-card>
+  </div>
+
+
+  <div *ngIf="segment == 'following'">
+    <ion-card *ngFor="let user of followingList; let index = index;">
+      <ion-item>
+        <ion-avatar item-left (click)="openUserModal(user.userId)">
+          <kudos-user-icon [fullName]="user.userFullName"></kudos-user-icon>
+        </ion-avatar>
+        <h2 (click)="openUserModal(user.userId)">{{user.userFullName}}</h2>
+        <p>{{user.userEmail}}</p>
+        <button ion-button icon-left outline small
+                (click)="openKudosModal(user.userEmail)"
+                type="button">
+          Give Kudos
+        </button>
+        <button ion-button icon-left outline small clear
+                (click)="unfollow(user.userId, user.userFullName, index)"
+                type="button">
+          Unfollow
+        </button>
+      </ion-item>
+    </ion-card>
+  </div>
+
+  <div *ngIf="segment == 'followers'">
+    <ion-card *ngFor="let user of followersList; let index = index;">
+      <ion-item>
+        <ion-avatar item-left (click)="openUserModal(user.userId)">
+          <kudos-user-icon [fullName]="user.userFullName"></kudos-user-icon>
+        </ion-avatar>
+        <h2 (click)="openUserModal(user.userId)">{{user.userFullName}}</h2>
+        <p>{{user.userEmail}}</p>
+        <button ion-button icon-left outline small
+                (click)="openKudosModal(user.userEmail)"
+                type="button">
+          Give Kudos
+        </button>
+      </ion-item>
+    </ion-card>
+  </div>
+
+</ion-content>
