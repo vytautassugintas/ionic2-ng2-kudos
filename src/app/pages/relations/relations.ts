@@ -4,6 +4,7 @@ import {NavController, ModalController, ToastController} from 'ionic-angular';
 import {HomeService} from "../../services/home.service";
 import {UserModalPage} from "../_modals/user-modal/user-modal";
 import {KudosModalPage} from "../_modals/kudos-modal/kudos-modal";
+import {SearchUserModal} from "../_modals/search-user-modal/search-user-modal";
 
 
 @Component({
@@ -31,7 +32,7 @@ export class RelationsPage {
 
   ionViewWillEnter() {
     this.homeService.getFollowing(0, 20).subscribe(
-      following =>{
+      following => {
         this.followingList = following.content;
         this.followingCount = following.totalElements;
       });
@@ -65,15 +66,20 @@ export class RelationsPage {
   openKudosModal(email) {
     let modal = this.modalCtrl.create(KudosModalPage, {email: email});
     /*modal.onDidDismiss(data => {
-      if (data) {
-        this.increaseUserExperiencePoints(data * 2);
-        this.user.weeklyKudos -= data;
-      }
-    });*/
+     if (data) {
+     this.increaseUserExperiencePoints(data * 2);
+     this.user.weeklyKudos -= data;
+     }
+     });*/
     modal.present();
   }
 
-  unfollow(id, fullName, index){
+  openSearchUserModal() {
+    let modal = this.modalCtrl.create(SearchUserModal);
+    modal.present();
+  }
+
+  unfollow(id, fullName, index) {
     console.log(index);
     this.homeService.unfollow(id).subscribe(
       success => {

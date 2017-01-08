@@ -17,7 +17,7 @@
   <div *ngIf="userProfile" text-center>
 
     <div>
-      <kudos-user-icon fullName="{{getUserFullName()}}" size="2"></kudos-user-icon>
+      <kudos-user-icon fullName="{{getUserFullName()}}" [circle]="false"></kudos-user-icon>
       <h4>{{userProfile.firstName}} {{userProfile.lastName}}</h4>
 
       <ion-grid>
@@ -68,6 +68,16 @@
     </ion-segment>
 
     <div *ngIf="segment == 'transactions'">
+
+      <div *ngIf="!kudosHistoryList.length" padding-top text-center>
+        <p>This user does't participated in any of kudos transactions. Yet.</p>
+        <button ion-button icon-left outline round
+                (click)="openKudosModal(userProfile.email)"
+                type="button">
+          Give Kudos
+        </button>
+      </div>
+
       <ion-card *ngFor="let item of kudosHistoryList">
         <ion-card-content>
           <a href="javascript:"
@@ -91,6 +101,15 @@
     </div>
 
     <div *ngIf="segment == 'endorsements'" padding-top>
+      <div *ngIf="!endorsementsList.length">
+        <p>No one endorsed this user. Be first!</p>
+        <button ion-button icon-left outline round
+                (click)="openKudosModal(userProfile.email)"
+                type="button">
+          Give Kudos
+        </button>
+      </div>
+
       <div *ngIf="endorsementsList">
         <ion-list no-lines>
           <ion-item *ngFor="let endorsement of endorsementsList"

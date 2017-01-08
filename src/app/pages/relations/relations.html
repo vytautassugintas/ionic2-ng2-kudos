@@ -3,6 +3,11 @@
     <ion-title>
       Buddies
     </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openSearchUserModal()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
   <ion-toolbar no-border-top>
     <ion-segment [(ngModel)]="segment" no-lines>

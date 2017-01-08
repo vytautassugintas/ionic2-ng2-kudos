@@ -51,13 +51,13 @@
               type="button"
               (click)="presentEndorsementsModal()">
         <ion-icon name="add"></ion-icon>
-        Add Endorsement
+        Select Endorsement
       </button>
 
       <div class="endorsement">
-        <ion-badge *ngIf="kudosForm.endorsement">
-          {{kudosForm.endorsement}}
-        </ion-badge>
+        <ion-chip *ngIf="kudosForm.endorsement" color="primary">
+          <ion-label>{{kudosForm.endorsement}}</ion-label>
+        </ion-chip>
       </div>
 
       <div class="input-holder">

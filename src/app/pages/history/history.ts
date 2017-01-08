@@ -5,6 +5,7 @@ import {UserModalPage} from "../_modals/user-modal/user-modal";
 import {KudosService} from "../../services/kudos.service";
 import {KudosResponse} from "../../model/response/kudos.model";
 import {EndorsedTransactionsModalPage} from "../_modals/endorsed-transactions-modal/endorsed-transactions-modal";
+import {SearchUserModal} from "../_modals/search-user-modal/search-user-modal";
 
 @Component({
   selector: 'page-about',
@@ -66,6 +67,11 @@ export class HistoryPage {
 
         })
     }
+  }
+
+  openSearchUserModal(){
+    let modal = this.modalCtrl.create(SearchUserModal);
+    modal.present();
   }
 
   openUserModal(id) {

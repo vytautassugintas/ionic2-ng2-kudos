@@ -17,6 +17,7 @@ export class UserIconComponent implements OnInit {
   }
 
   @Input() size: number;
+  @Input() circle: boolean;
 
   initials: string;
   backgroundColors: Array<string>;

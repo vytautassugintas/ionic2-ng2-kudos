@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar no-border-bottom>
     <ion-title>Search User</ion-title>
     <ion-buttons left>
       <button ion-button (click)="dismiss()">
@@ -8,16 +8,16 @@
       </button>
     </ion-buttons>
   </ion-navbar>
+  <ion-toolbar no-border-top>
+    <ion-searchbar
+      [(ngModel)]="searchEmail"
+      (ionInput)="onInput($event)"
+      (ionClear)="onClear($event)">
+    </ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
-  <ion-searchbar
-    [(ngModel)]="searchEmail"
-    (ionInput)="onInput($event)"
-    (ionClear)="onClear($event)">
-  </ion-searchbar>
-
     <div *ngIf="showPredicates && predicatedEmails.length > 0">
       <ion-card *ngFor="let user of predicatedEmails"
                 (click)="openUserModal(user.id)">

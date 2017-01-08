@@ -1,14 +1,19 @@
 <ion-header>
-
   <ion-navbar>
     <ion-title>Kudos Store</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="thumbs-up"></ion-icon>
+        <ion-badge>200</ion-badge>
+      </button>
+      <button ion-button icon-only>
+        <ion-icon name="list-box"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content>
-
   <ion-card *ngFor="let item of shopItems">
     <img src="{{item.imageUrl}}" style="max-height: 240px"/>
     <ion-card-content>

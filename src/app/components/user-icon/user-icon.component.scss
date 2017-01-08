@@ -2,9 +2,18 @@ $regular-icon-size: 64px;
 $small-icon-size: 24px;
 $icon-font-size: 20px;
 $icon-border-radius: 2px;
+$icon-circular-border-radius: 50%;
 $icon-text-color: #fff;
 
 .circle {
+  margin: auto;
+  border-radius: $icon-circular-border-radius;
+  font-size: $icon-font-size;
+  color: #fff;
+  text-align: center;
+}
+
+.square{
   margin: auto;
   border-radius: $icon-border-radius;
   font-size: $icon-font-size;

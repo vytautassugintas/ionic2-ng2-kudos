@@ -4,6 +4,7 @@ import {HomeService} from "../../../services/home.service";
 import {KudosService} from "../../../services/kudos.service";
 import {EndorsedTransactionsModalPage} from "../endorsed-transactions-modal/endorsed-transactions-modal";
 import {UserEndorsedTransactionsModalPage} from "../user-endorsed-transactions-modal/user-endorsed-transactions-modal";
+import {KudosModalPage} from "../kudos-modal/kudos-modal";
 
 
 @Component({
@@ -120,6 +121,11 @@ export class UserModalPage {
       message: message,
       duration: 3000
     }).present();
+  }
+
+  openKudosModal(email) {
+    let modal = this.modalCtrl.create(KudosModalPage, {email: email});
+    modal.present();
   }
 
   openEndorsedTransactionsModal(endorsement) {

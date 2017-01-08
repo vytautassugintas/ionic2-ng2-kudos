@@ -1,5 +1,5 @@
-<div class="circle"
-     [style.background-color]="backgroundColor"
-     [ngClass]="size == 1 ? 'small' : 'regular'">
+<div class="regular"
+     [ngClass]="circle ? 'circle' : 'square'"
+     [style.background-color]="backgroundColor">
   {{initials.toUpperCase()}}
 </div>
