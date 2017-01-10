@@ -23,6 +23,8 @@ import {LeadersPage} from "./pages/leaders/leaders";
 import {LeaderboardService} from "./services/leaderboard.service";
 import {RelationsPage} from "./pages/relations/relations";
 import {SearchUserModal} from "./pages/_modals/search-user-modal/search-user-modal";
+import {ShopService} from "./services/shop.service";
+import {OrdersModal} from "./pages/_modals/orders-modal/orders-modal";
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import {SearchUserModal} from "./pages/_modals/search-user-modal/search-user-mod
     EndorsementsModalPage,
     UserEndorsedTransactionsModalPage,
     SearchUserModal,
+    OrdersModal,
     MenuPage,
     ShopPage,
     LoginPage,
@@ -60,6 +63,7 @@ import {SearchUserModal} from "./pages/_modals/search-user-modal/search-user-mod
     EndorsementsModalPage,
     UserEndorsedTransactionsModalPage,
     SearchUserModal,
+    OrdersModal,
     MenuPage,
     ShopPage,
     LoginPage,
@@ -73,7 +77,8 @@ import {SearchUserModal} from "./pages/_modals/search-user-modal/search-user-mod
     AuthenticationService,
     HomeService,
     KudosService,
-    LeaderboardService
+    LeaderboardService,
+    ShopService
   ]
 })
 export class AppModule {

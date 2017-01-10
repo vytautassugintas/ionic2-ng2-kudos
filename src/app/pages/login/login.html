@@ -14,6 +14,10 @@
       <ion-input type="password" [(ngModel)]="loginForm.password" name="password"></ion-input>
     </ion-item>
 
+    <div padding class="error" *ngIf="error">
+      <p text-center ><ion-icon name="information-circle"></ion-icon> {{error.message}}</p>
+    </div>
+
     <div padding>
       <button ion-button type="submit" block>Login</button>
     </div>

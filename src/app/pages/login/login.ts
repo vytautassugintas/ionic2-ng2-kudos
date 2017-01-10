@@ -12,6 +12,7 @@ import {AuthenticationService} from "../../services/authentication.service";
 export class LoginPage {
 
   loginForm: LoginForm;
+  error: {};
 
   constructor(public navCtrl: NavController, private authService: AuthenticationService) {
     this.loginForm = new LoginForm("", "");
@@ -34,6 +35,7 @@ export class LoginPage {
       },
       error => {
         console.log(error);
+        this.error = error.fieldError;
       }
     );
   }

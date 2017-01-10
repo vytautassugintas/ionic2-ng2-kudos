@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, ModalController} from 'ionic-angular';
+import {ShopService} from "../../services/shop.service";
+import {OrdersModal} from "../_modals/orders-modal/orders-modal";
 
 @Component({
   selector: 'page-shop',
@@ -7,44 +9,31 @@ import {NavController} from 'ionic-angular';
 })
 export class ShopPage {
 
+  availablePoints: any;
   shopItems: Array<any> = [];
 
-  constructor(public navCtrl: NavController) {
-    this.mockShopItemsList();
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public shopService: ShopService) {
+    this.shopService.getAvailablePoints().subscribe(
+      points => this.availablePoints = points.points
+    );
+    this.shopService.getUserHistory(0, 20).subscribe(
+      items => this.shopItems = items.content
+    );
   }
 
   ionViewDidLoad() {
-    console.log('Hello ShopPage Page');
+
   }
 
-  mockShopItemsList() {
-    this.shopItems.push(this.mockShopItem(
-      "Duo Bear",
-      "Pay for one and get two",
-      "http://4.bp.blogspot.com/-qExGQcn234Q/URB8JCRUsMI/AAAAAAAADcQ/8B1TA5AB1g8/s320/Teddyday_teddy_bear_wallpaper+(3).jpg",
-      50),
-      this.mockShopItem(
-        "Teddy Bear",
-        "This bear will cheer you up",
-        "http://freebackgroundshd.com/wp-content/uploads/2016/02/Teddy-Bear-Baby-Toy-with-Roses-HD-320x240.jpg",
-        30
-      ),
-      this.mockShopItem(
-        "Pink Bear",
-        "Roses are red or pink",
-        "http://2.bp.blogspot.com/-9s1su9Gb4yg/UVqLCTc_wFI/AAAAAAAAAL0/Q9DcXZy0fBk/s320/Love+Teddy+Bear+Wallpapers+1+(5).jpg",
-        30
-    ));
+  buyItem(id: string){
+    this.shopService.buyItem(id).subscribe(
+      ok => console.log("SUCCES")
+    )
   }
 
-  mockShopItem(title, description, imageUrl, price) {
-    return {
-      title: title,
-      description: description,
-      imageUrl: imageUrl,
-      price: price
-    }
+  openOrdersModal(){
+    let modal = this.modalCtrl.create(OrdersModal);
+    modal.present();
   }
-
 
 }
