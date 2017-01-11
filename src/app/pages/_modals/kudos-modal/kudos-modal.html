@@ -26,7 +26,7 @@
                (ngModelChange)="onEmailInputChange($event)"
                [ngClass]="showPredicates && emailInputFocused ? 'no-border-radius-bottom' : ''"
                [(ngModel)]="kudosForm.receiverEmail" name="receiverEmail">
-        <div class="error"
+        <div class="field-error"
              *ngIf="error?.field == 'receiver_email'">
           {{error.message}}
         </div>
@@ -65,7 +65,7 @@
                placeholder="Kudos Amount"
                name="amount"
                [(ngModel)]="kudosForm.amount">
-        <div class="error"
+        <div class="field-error"
              *ngIf="error?.field == 'amount'">
           {{error.message}}
         </div>

@@ -4,12 +4,6 @@ import {HomeService} from "../../../services/home.service";
 import {KudosService} from "../../../services/kudos.service";
 import {UserModalPage} from "../user-modal/user-modal";
 
-/*
- Generated class for the UserEndorsedTransactionsModal page.
-
- See http://ionicframework.com/docs/v2/components/#navigation for more info on
- Ionic pages and navigation.
- */
 @Component({
   selector: 'page-user-endorsed-transactions-modal',
   templateUrl: 'user-endorsed-transactions-modal.html'

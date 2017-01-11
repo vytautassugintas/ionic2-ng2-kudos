@@ -101,20 +101,4 @@ export class KudosModalPage {
     this.viewController.dismiss(null);
   }
 
-  createActionSheetButton(title) {
-    if (title == "Cancel") {
-      return {
-        text: title,
-        handler: () => {}
-      }
-    } else {
-      return {
-        text: title,
-        handler: () => {
-          this.kudosForm.endorsement = title;
-        }
-      }
-    }
-  }
-
 }

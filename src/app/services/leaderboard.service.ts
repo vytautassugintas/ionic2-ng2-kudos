@@ -41,4 +41,5 @@ export class LeaderboardService {
 
     return new RequestOptions({headers: headers, withCredentials: true, search: params});
   }
+
 }

@@ -86,6 +86,7 @@
           <span> kudos </span> to
           <a href="javascript:"
              (click)="openUserModal(item.receiverId)">{{item.receiverFullName}}</a>
+          <span *ngIf="item.endorsement"> and endorsed for <b>{{item.endorsement}}</b></span>
           <span class="kudos-date">{{item.date | date}}</span>
           <div class="message">
             <ion-icon name="mail"></ion-icon>
@@ -115,7 +116,7 @@
           <ion-item *ngFor="let endorsement of endorsementsList"
                     (click)="openEndorsedTransactionsModal(endorsement.title)">
             <label item-left>
-              {{endorsement.title}}
+              {{endorsement.title ? endorsement.title : "General"}}
             </label>
             <ion-badge item-right>
               {{endorsement.value}}

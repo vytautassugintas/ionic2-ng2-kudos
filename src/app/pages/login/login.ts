@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, AlertController} from 'ionic-angular';
 import {TabsPage} from "../tabs/tabs";
 import {SignupPage} from "../signup/signup";
 import {LoginForm} from "../../forms/login.form";
@@ -14,7 +14,7 @@ export class LoginPage {
   loginForm: LoginForm;
   error: {};
 
-  constructor(public navCtrl: NavController, private authService: AuthenticationService) {
+  constructor(public navCtrl: NavController, private authService: AuthenticationService, public alertCtrl: AlertController) {
     this.loginForm = new LoginForm("", "");
   }
 
@@ -34,7 +34,6 @@ export class LoginPage {
         this.navCtrl.push(TabsPage);
       },
       error => {
-        console.log(error);
         this.error = error.fieldError;
       }
     );

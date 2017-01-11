@@ -65,12 +65,6 @@ export class RelationsPage {
 
   openKudosModal(email) {
     let modal = this.modalCtrl.create(KudosModalPage, {email: email});
-    /*modal.onDidDismiss(data => {
-     if (data) {
-     this.increaseUserExperiencePoints(data * 2);
-     this.user.weeklyKudos -= data;
-     }
-     });*/
     modal.present();
   }
 

@@ -23,6 +23,10 @@ export class ResponseExtractor{
         return Observable.throw(JSON.parse(error._body));
     }
 
+  static handleStringError(error: any) {
+    return Observable.throw(error.toString());
+  }
+
     static handleSimpleError(error: any){
         return Observable.throw(error);
     }
