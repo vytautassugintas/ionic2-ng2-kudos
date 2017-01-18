@@ -24,17 +24,17 @@ export class EndorsedTransactionsModalPage {
   }
 
   getTransactionsByEndorsement() {
-      return this.kudosService.getTransactionsByEndorsement(this.endorsement, this.page, 10).subscribe(
-        result => {
-          this.page++;
-          for (var item of result.content) {
-            this.endorsedTransactionsList.push(item);
-          }
-          if (result.last) {
-            this.lastPage = true;
-          }
+    return this.kudosService.getTransactionsByEndorsement(this.endorsement, this.page, 10).subscribe(
+      result => {
+        this.page++;
+        for (var item of result.content) {
+          this.endorsedTransactionsList.push(item);
         }
-      )
+        if (result.last) {
+          this.lastPage = true;
+        }
+      }
+    )
   }
 
   doInfinite(infiniteScroll) {
@@ -56,6 +56,10 @@ export class EndorsedTransactionsModalPage {
 
         })
     }
+  }
+
+  dismiss() {
+    this.viewController.dismiss(null);
   }
 
   openUserModal(id) {

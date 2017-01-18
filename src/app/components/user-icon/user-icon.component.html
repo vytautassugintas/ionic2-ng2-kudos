@@ -1,4 +1,4 @@
-<div class="regular"
+<div *ngIf="firstName" class="regular"
      [ngClass]="circle ? 'circle' : 'square'"
      [style.background-color]="backgroundColor">
   {{initials.toUpperCase()}}

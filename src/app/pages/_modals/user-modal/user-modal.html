@@ -43,7 +43,7 @@
         </ion-row>
       </ion-grid>
 
-      <div text-center *ngIf="userId != currentUserId">
+      <div text-center *ngIf="userId != currentUserId" margin-bottom>
         <button *ngIf="userProfile.canFollow"
                 ion-button round small
                 (click)="follow(userProfile.id)"

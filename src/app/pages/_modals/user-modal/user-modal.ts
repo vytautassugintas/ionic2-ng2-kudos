@@ -2,10 +2,8 @@ import {Component} from '@angular/core';
 import {NavController, NavParams, ViewController, ModalController, ToastController} from 'ionic-angular';
 import {HomeService} from "../../../services/home.service";
 import {KudosService} from "../../../services/kudos.service";
-import {EndorsedTransactionsModalPage} from "../endorsed-transactions-modal/endorsed-transactions-modal";
 import {UserEndorsedTransactionsModalPage} from "../user-endorsed-transactions-modal/user-endorsed-transactions-modal";
 import {KudosModalPage} from "../kudos-modal/kudos-modal";
-
 
 @Component({
   selector: 'page-user-modal',
